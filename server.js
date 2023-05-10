@@ -34,9 +34,9 @@ app.use(
 		origin: process.env.CLIENT_URL,
 		methods: "GET,POST,PUT,DELETE",
 		credentials: true,
+		allowedHeaders: ['X-Requested-With', 'XMLHttpRequest', 'Access-Control-Allow-Origin', 'Content-Type', 'Accept', 'Authorization', 'Origin'],
 	})
 );
-
 app.use("/auth", authRoute);
 
 const port = process.env.PORT || 8080;
