@@ -32,8 +32,14 @@ router.get(
 );
 
 router.get("/logout", (req, res) => {
-	req.logout();
-	res.redirect(process.env.CLIENT_URL);
+	req.logout((err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			req.session.destroy();
+			res.redirect(`${process.env.CLIENT_URL}`);
+		}
+	});
 });
 
 module.exports = router;
