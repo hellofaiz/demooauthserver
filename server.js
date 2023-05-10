@@ -9,6 +9,7 @@ const passportStrategy = require("./passport");
 const cookieParser = require("cookie-parser");
 const app = express();
 
+app.set('trust proxy', 1);
 // app.use(
 // 	cookieSession({
 // 		name: "session",
