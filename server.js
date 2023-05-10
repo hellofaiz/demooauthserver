@@ -4,6 +4,7 @@ const cors = require("cors");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
 const cookieSession = require("cookie-session");
+const session = require('express-session');
 const passportStrategy = require("./passport");
 const app = express();
 
@@ -14,6 +15,16 @@ app.use(
 		maxAge: 24 * 60 * 60 * 100,
 	})
 );
+app.use(session({
+	secret: `${process.env.CLIENT_SECRET}`,
+	resave: true,
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: false,
+		secure: true,
+		sameSite: 'none',
+	}
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
