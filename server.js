@@ -3,18 +3,20 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
 const session = require('express-session');
 const passportStrategy = require("./passport");
+const cookieParser = require("cookie-parser");
 const app = express();
 
-app.use(
-	cookieSession({
-		name: "session",
-		keys: ["cyberwolve"],
-		maxAge: 24 * 60 * 60 * 100,
-	})
-);
+// app.use(
+// 	cookieSession({
+// 		name: "session",
+// 		keys: ["cyberwolve"],
+// 		maxAge: 24 * 60 * 60 * 100,
+// 	})
+// );
+app.use(cookieParser());
 app.use(session({
 	secret: `${process.env.CLIENT_SECRET}`,
 	resave: true,
